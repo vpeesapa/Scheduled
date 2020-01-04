@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+  <html>
+	<head>
+  	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  	<!--Import Google Icon Font-->
+  	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  	<!--Import materialize.css-->
+  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+
+  	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+     <style>
+        .selected{background-color: lightgray;}
+        .darksalmon{background-color: darksalmon;}
+        .gold{background-color: gold;}
+     </style>
+  	<!--Let browser know website is optimized for mobile-->
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  	<title>Scheduled!</title>
+	</head>
+
+	<body onload="load('Schedule');load('Reminder');load('Notes');">
+
+  	<!-- Section: Upper Navbar -->
+
+  	<div class="navbar-fixed">  
+    	<nav class ="orange">
+      	<div class="container">
+        	<div class="nav-wrapper">
+          	<a href="#" class="brand-logo left"><i class="large material-icons">today</i>Scheduled!</a>
+          	<ul id="nav-mobile" class="navbar right hide-on-med-and-down">
+                <li><a class="btn-floating green pulse" href="#schedule"><i class="material-icons">import_contacts</i></a></li>
+                <li><a class="btn-floating blue pulse" href="#weather"><i class="material-icons">cloud</i></a></li>
+                <li><a class="btn-floating red pulse" href="#reminders"><i class="material-icons">date_range</i></a></li>
+                <li><a class="btn-floating yellow pulse" href="#Note"><i class="material-icons">assignment</i></a></li>  
+                <li><a href="homepage-1.html"><i class="material-icons medium black-text">refresh</i></a></li>    
+                </ul>
+        	</div>
+      	</div>
+    	</nav>
+  	</div>
+
+  	<h2 class="header center indigo-text">Welcome to Scheduled!, Alex</h2>
+  	<!-- Section: Interactive cards -->
+  	<section class="section section-icons grey lighten-4 center">
+        <a id="schedule" class="anchor"></a>
+        <div class="section scrollspy"></div>
+  	<div class="container">
+    	<div class="row">
+      	<div class="col s12">
+        	<div class="card-panel">
+          	<i class="material-icons medium green-text">import_contacts</i>
+          	<h4>Schedule</h4>
+
+          	<div class="tab tab-1">
+            	<table id="Schedule" border="1">
+                	<tr>
+                    	<th>Class</th>
+                    	<th>Type</th>
+                    	<th>Time</th>
+                    	<th>Location</th>
+                	</tr>
+            	</table>
+          	</div>
+        	<div class="tab tab-2">
+            	<br>
+            	<br>
+        	</div>
+        	<div class ="tab tab-2">
+                <div class = "input-field col s6">
+                  <i class="material-icons prefix">class</i>
+                  <input placeholder="Enter your class" id="class" type="text" class="validate">
+                </div>
+               <div class = "input-field col s6">
+                  <i class="material-icons prefix">sort</i>
+                  <input placeholder="Enter type of class" id="type" type="text" class="validate">
+                </div>
+                <div class = "input-field col s6">
+                  <i class="material-icons prefix">timer</i>
+                  <input placeholder="Enter starting time of your class" id="stime" type="text" class="validate">
+                </div>
+                <div class = "input-field col s6">
+                  <i class="material-icons prefix">timer</i>
+                  <input placeholder="Enter ending time of your class" id="etime" type="text" class="validate">
+                </div>
+                <div class = "input-field col s12">
+                  <i class="material-icons prefix">place</i>
+                  <input placeholder="Enter the location of your class" id="location" type="text" class="validate">
+                </div>
+          </div>
+            	<br>
+            	<br>
+            	<br>
+            	<div class ="tab tab-2">
+            	<button onclick="add('Schedule');" class="waves-effect waves-light btn">ADD<i class="material-icons right">add</i></button>
+            	<button onclick="edit('Schedule');" class="waves-effect waves-light btn">EDIT <i class="material-icons right">create</i></button>
+            	<button onclick="remove('Schedule');"class="waves-effect waves-light btn">Remove <i class="material-icons right">clear</i></button>
+              <button onclick="clearAll('Schedule');"class="waves-effect waves-light btn">Clear <i class="material-icons right">delete_sweep</i></button>
+        	</div>
+      	</div>
+        <a id="weather" class="anchor"></a>
+        <div class="section scrollspy"></div>
+      	<div class="col s12">
+        	<div class="card-panel">
+          	<i class="material-icons medium blue-text">cloud</i>
+          	<h4>Weather</h4>
+          	<a class="get_weather waves-effect waves-light btn">View</a>
+          	<div id="result" style="display: none">
+            	<div id="icon"></div>
+            	<div id="city"><strong></strong></div>
+            	<div id="weather"></div>
+            	<div id="time"></div>
+            	<div id="results"></div>
+           	<!--<div><a href="#" class="hide">Hide</a>-->
+          	</div>
+        	</div>
+      	</div>
+      	<div class="col s12">
+      	        <a id="reminders" class="anchor"></a>
+                <div class="section scrollspy"></div>
+        	<div class="card-panel">
+          	<i class="material-icons medium red-text">date_range</i>
+          	<h4>Reminders</h4>
+
+
+            	<div class="tab tab-1">
+            	<table id="Reminder" border="1">
+                	<tr>
+                    	<th>Current Reminder</th>
+                    	<th>Priority</th>
+                	</tr>
+            	</table>
+        	</div>
+        	<div class="tab tab-2">
+            	<br>
+            	<br>
+        	</div>
+        	<div class ="tab tab-2">
+            	<div class = "input-field col s6">
+                  <i class="material-icons prefix">date_range</i>
+                  <input placeholder="Enter your new reminder" id="reminder" type="text" class="validate">
+              </div>
+              <div class = "input-field col s6">
+                  <i class="material-icons prefix">warning</i>
+                  <input placeholder="Enter your priority(High, Medium, or Low)" id="priority" type="text" class="validate">
+              </div>
+            </div>
+            	<br>
+            	<br>
+            	<br>
+            	<button onclick="add('Reminder');" class="waves-effect waves-light btn">ADD<i class="material-icons right">add</i></button>
+              <button onclick="edit('Reminder');" class="waves-effect waves-light btn">EDIT <i class="material-icons right">create</i></button>
+              <button onclick="remove('Reminder');"class="waves-effect waves-light btn">Remove <i class="material-icons right">clear</i></button>
+              <button onclick="clearAll('Reminder');"class="waves-effect waves-light btn">Clear <i class="material-icons right">delete_sweep</i></button>
+          	<br>
+          	<br>
+        	</div>
+      	</div>
+      	<div class="col s12">
+      	        <a id="Note" class="anchor"></a>
+                <div class="section scrollspy"></div>
+        	<div class="card-panel">
+          	<i class="material-icons medium amber-text">assignment</i>
+          	<h4>Sticky Notes</h4>
+          	<div class="tab tab-1">
+            	<table id="Notes" border="1">
+                	<tr>
+                    	<th>Sticky Notes</th>
+                	</tr>
+            	</table>
+        	</div>
+        	<div class="tab tab-2">
+            	<br>
+            	<br>
+        	</div>
+        	<div class ="tab tab-2">
+            	<div class = "input-field col s12">
+                  <i class="material-icons prefix">assignment</i>
+                  <input placeholder="Enter your new notes" id="notes" type="text" class="validate">
+              </div>
+            	<br>
+            	<br>
+            	<br>
+              <button onclick="add('Notes');" class="waves-effect waves-light btn">ADD<i class="material-icons right">add</i></button>
+              <button onclick="edit('Notes');" class="waves-effect waves-light btn">EDIT <i class="material-icons right">create</i></button>
+              <button onclick="remove('Notes');"class="waves-effect waves-light btn">Remove <i class="material-icons right">clear</i></button>
+              <button onclick="clearAll('Notes');"class="waves-effect waves-light btn">Clear <i class="material-icons right">delete_sweep</i></button>
+          	<br>
+          	<br>
+        	</div>
+      	</div>
+
+  	</section>
+
+  	<section class="section section-icons grey lighten-4 center">
+    	<div class="container">
+      	<div class="row">
+      	<div class="col"></div>
+
+
+      	</div>
+
+    	</div>
+
+  	</section>
+
+  	<footer class="page-footer orange">
+  	<div class="container">
+    	<div class="row">
+      	<div class="col l6 s12">
+        	<h5 class="white-text">About us</h5>
+        	<p class="grey-text text-lighten-4">We are a team of 4 UC Davis college students</p>
+        	<p class="grey-text text-lighten-4">Team 4: Ming Cheng, Ajay Miranda, Varun Peesapati, Jiayi Xu</p>
+
+  	</footer>
+
+
+
+  	<!--JavaScript at end of body for optimized loading-->
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+
+  	<script src="schedule!.js"></script>
+
+  	<script type="text/javascript">
+
+  jQuery(function($){
+
+	function getWeather(){
+  	$.ajax('http://api.wunderground.com/api/c6dc8e785d943109/conditions/q/CA/Davis.json', {
+    	dataType: 'jsonp',
+    	success: function(json) {
+      	$('div#city strong').text(json.current_observation.display_location.full)
+      	$('div#icon').html('<img src=' + json.current_observation.icon_url + '>')
+      	$('div#weather').text(json.current_observation.temperature_string + " " + json.current_observation.weather);
+      	$('div#time').text(json.current_observation.observation_time_rfc822);
+      	if(json.current_observation.weather=='Rain')
+      	  {
+      	   $('div#results').text("Please take a rain coat when you're leaving your house!")
+      	  }
+    	}
+  	});
+	}
+
+	$('a.get_weather').click(function(e) {
+  	e.preventDefault();
+  	$(this).hide();
+  	getWeather();
+  	$('#result').fadeIn(1000);
+	});
+
+	$('a.hide').click(function(e) {
+  	e.preventDefault();
+  	$('#result').hide();
+  	$('a.get_weather').show();
+	})
+
+  })
+
+  </script>
+
+	</body>
+  </html>
